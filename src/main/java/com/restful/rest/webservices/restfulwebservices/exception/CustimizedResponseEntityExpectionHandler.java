@@ -1,8 +1,10 @@
 package com.restful.rest.webservices.restfulwebservices.exception;
 
 import com.restful.rest.webservices.restfulwebservices.user.UserNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +34,13 @@ public class CustimizedResponseEntityExpectionHandler extends ResponseEntityExce
 
         return new ResponseEntity(expectionResponse,HttpStatus.NOT_FOUND);
 
+    }
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ExpectionResponse expectionResponse= new ExpectionResponse(new Date(),"Validation FaileD",
+                ex.getBindingResult().toString());
+        return new ResponseEntity(expectionResponse,HttpStatus.BAD_REQUEST);
     }
 
 }
