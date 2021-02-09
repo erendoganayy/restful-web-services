@@ -1,4 +1,4 @@
-package com.restful.rest.webservices.restfulwebservices;
+package com.restful.rest.webservices.restfulwebservices.helloworld;
 //Controller
 
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +18,7 @@ public class HelloWorldController {
         return new HelloWorldBean("Hello Dünyam!");
 
     }
-    //helloworld/parh-variable/in28minutes
-    @GetMapping("/hello-world/path-variable/{name}")
+    @GetMapping(path="/hello-world/path-variable/{name}")
     public HelloWorldBean helloWorldPathVariable(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello World, %s",name));
 
