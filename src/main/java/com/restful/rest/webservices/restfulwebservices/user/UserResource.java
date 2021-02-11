@@ -1,10 +1,13 @@
 package com.restful.rest.webservices.restfulwebservices.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -22,17 +25,20 @@ public class UserResource {
       return service.findAll();
     }
         @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id){
+    public EntityModel<User> retrieveUser(@PathVariable int id){
     User user = service.findOne(id);
     if (user==null){
         throw new UserNotFoundException("id- "+id);
     }
-
-
-    return user;
-        
+    //"all-users", server_path + "/users"
+            //RetrieveAllUsers
+            EntityModel<User> resource=EntityModel.of(user);
+            WebMvcLinkBuilder linkTo=WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+    resource.add(linkTo.withRel("all-users"));
+    return resource;
     }
-@Validated
+
+
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
        User savedUser= service.save(user);
