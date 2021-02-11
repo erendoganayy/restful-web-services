@@ -17,10 +17,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     public static final Contact DEFAULT_CONTACT = new Contact(
-            "Ranga Karanam", "http://www.in28minutes.com", "in28minutes@gmail.com");
+            "EREN DOGANAY", "github.com/erendgnyy", "in28minutes@gmail.com");
 
     public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
-            "Awesome API Title", "Awesome API Description", "1.0",
+            "EREN'S API TITLE", "THIS IS MY API BROTHER", "1.0",
             "urn:tos", DEFAULT_CONTACT,
             "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", Arrays.asList());
 
@@ -34,5 +34,13 @@ public class SwaggerConfig {
                 .apiInfo(DEFAULT_API_INFO)
                 .produces(DEFAULT_PRODUCES_AND_CONSUMES)
                 .consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+
+
+
+
+
+                /*.apiInfo(DEFAULT_API_INFO)
+                .produces(DEFAULT_PRODUCES_AND_CONSUMES)
+                .consumes(DEFAULT_PRODUCES_AND_CONSUMES);*/
     }
 }

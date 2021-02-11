@@ -1,5 +1,7 @@
 package com.restful.rest.webservices.restfulwebservices.user;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.dao.DataAccessException;
 
 import javax.validation.constraints.Negative;
@@ -9,14 +11,16 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 
-
+@ApiModel(description = "All details about the user. ")
 public class User {
     private Integer id;
 @NotBlank(message = "Name field may not be blank!")
     @Size(min =2,message = "Name should have atleast 2 characters")
+@ApiModelProperty(notes = "Name should have atleast 2 characters. ")
     private String name;
 
     @Past(message = "Time must be past from now!")
+    @ApiModelProperty(notes = "Birth Date should be in the past")
     private Date birthDate;
 
     protected User(){
