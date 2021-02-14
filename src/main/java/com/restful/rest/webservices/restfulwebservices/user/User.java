@@ -4,6 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.dao.DataAccessException;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Negative;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
@@ -12,7 +15,11 @@ import java.util.Date;
 
 
 @ApiModel(description = "All details about the user. ")
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue
     private Integer id;
 @NotBlank(message = "Name field may not be blank!")
     @Size(min =2,message = "Name should have atleast 2 characters")
